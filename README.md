@@ -3,6 +3,6 @@ A redis storage provider for distributed caching using [AnyCache](https://github
 
 ## Installation
 
-```ps
-> Install-Package AnyCache.Providers.Redis
+```Powershell
+PM> Install-Package AnyCache.Providers.Redis
 ```
