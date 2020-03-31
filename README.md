@@ -1,2 +1,2 @@
-# AnyCache.Redis
+# AnyCache.Providers.Redis
 A redis storage provider for distributed caching using AnyCache
