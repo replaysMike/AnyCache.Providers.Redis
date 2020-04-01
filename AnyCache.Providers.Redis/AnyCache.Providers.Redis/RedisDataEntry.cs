@@ -9,7 +9,7 @@ namespace AnyCache.Providers.Redis
     /// <remarks>
     /// Redis is a string-only store, so we must wrap any serialized data going into it because it lacks type information
     /// </remarks>
-    internal sealed class RedisDataEntry
+    public class RedisDataEntry
     {
         /// <summary>
         /// Json serialized data object

@@ -1,4 +1,5 @@
 ﻿using StackExchange.Redis;
+using System.Collections.Generic;
 using System.Reflection;
 using System.Security.Authentication;
 using System.Text;
@@ -14,6 +15,8 @@ namespace AnyCache.Providers.Redis
         private const int DefaultConnectTimeout = 5000;
         private const int DefaultConnectRetry = 3;
         private const int DefaultConfigCheckSeconds = 60;
+        
+        private string _hostname;
 
         /// <summary>
         /// If true, Connect will not create a connection while no servers are available
@@ -134,22 +137,33 @@ namespace AnyCache.Providers.Redis
         /// </summary>
         public int? WriteBuffer { get; set; } = 4096;
 
+        public RedisConfiguration() { }
+        public RedisConfiguration(string hostname)
+        {
+            _hostname = hostname;
+        }
+
         public override string ToString()
         {
-            var config = new StringBuilder();
+            var config = new List<string>();
             var properties = typeof(RedisConfiguration).GetProperties(BindingFlags.Public | BindingFlags.Instance);
             foreach(var property in properties)
             {
                 var value = property.GetValue(this);
+                if (property.PropertyType == typeof(bool) || property.PropertyType == typeof(bool?))
+                    value = value?.ToString().ToLower();
                 var name = char.ToLowerInvariant(property.Name[0]) + property.Name.Substring(1);
                 
                 if (value != null)
                 {
-                    config.Append($"{name}={value.ToString()}");
+                    config.Add($"{name}={value.ToString()}");
                 }
             }
+            
+            if (string.IsNullOrEmpty(_hostname))
+                return string.Join(",", config);
 
-            return config.ToString();
+            return $"{_hostname},{string.Join(",", config)}";
         }
     }
 }

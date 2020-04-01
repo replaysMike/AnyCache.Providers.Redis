@@ -10,6 +10,8 @@
     <PackageTags>redis cache caching anycache asp.net core dotnet-standard refactor software michael brown</PackageTags>
     <PackageReleaseNotes>A Redis storage provider for AnyCache</PackageReleaseNotes>
     <Version>1.0.0</Version>
+    <SignAssembly>false</SignAssembly>
+    <AssemblyOriginatorKeyFile>RefactorSoftware.pfx</AssemblyOriginatorKeyFile>
 
   </PropertyGroup>
 
