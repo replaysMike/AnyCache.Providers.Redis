@@ -16,8 +16,8 @@
   <ItemGroup>
     <PackageReference Include="AnyCache" Version="1.0.16" />
     <PackageReference Include="ILRepack.MSBuild.Task.InternalizedRenameSupport" Version="2.0.19" PrivateAssets="all" />
+    <PackageReference Include="Newtonsoft.Json" Version="12.0.3" PrivateAssets="all" />
     <PackageReference Include="StackExchange.Redis.StrongName" Version="1.2.6" PrivateAssets="all" />
-    <PackageReference Include="Utf8Json" Version="1.3.7" PrivateAssets="all" />
   </ItemGroup>
 
   <Target Name="ILRepack" AfterTargets="Build" Condition="'$(Configuration)' == 'Release' AND '$(TargetFramework)' != ''">
@@ -26,24 +26,9 @@
     </PropertyGroup>
     <ItemGroup>
       <!-- These are all the assemblies you want to embed -->
-      <InputAssemblies Include="Utf8Json.dll" />
       <InputAssemblies Include="StackExchange.Redis.StrongName.dll" />
-      <InputAssemblies Include="System.Collections.Concurrent.dll" />
-      <InputAssemblies Include="System.Collections.NonGeneric.dll" />
-      <InputAssemblies Include="System.IO.FileSystem.Primitives.dll" />
-      <InputAssemblies Include="System.Security.Claims.dll" />
-      <InputAssemblies Include="System.Security.Cryptography.OpenSsl.dll" />
-      <InputAssemblies Include="System.Security.Cryptography.Primitives.dll" />
-      <InputAssemblies Include="System.Reflection.Emit.dll" />
-      <InputAssemblies Include="System.Reflection.Emit.ILGeneration.dll" />
-      <InputAssemblies Include="System.Reflection.Emit.Lightweight.dll" />
-      <InputAssemblies Include="System.Reflection.TypeExtensions.dll" />
-      <InputAssemblies Include="System.Runtime.InteropServices.RuntimeInformation.dll" />
-      <InputAssemblies Include="System.Text.RegularExpressions.dll" />
-      <InputAssemblies Include="System.Threading.dll" />
-      <InputAssemblies Include="System.Threading.Tasks.Extensions.dll" />
-      <InputAssemblies Include="System.Threading.Thread.dll" />
-      <InputAssemblies Include="System.Threading.ThreadPool.dll" />
+      <InputAssemblies Include="Newtonsoft.Json.dll" />
+      <InputAssemblies Include="System.Runtime.Serialization.Primitives.dll" />
     </ItemGroup>
     <ItemGroup>
       <!-- Dot not internalize any types inside this assembly -->

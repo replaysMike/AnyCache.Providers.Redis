@@ -1,8 +1,8 @@
 ﻿using Microsoft.Extensions.Caching.Memory;
+using Newtonsoft.Json;
 using StackExchange.Redis;
 using System;
 using System.Threading.Tasks;
-using Utf8Json;
 
 namespace AnyCache.Providers.Redis
 {
@@ -76,7 +76,7 @@ namespace AnyCache.Providers.Redis
         {
             var cacheEntry = InternalGet(key);
             if (cacheEntry != null)
-                return JsonSerializer.NonGeneric.Deserialize(cacheEntry.Type, cacheEntry.Data);
+                return JsonConvert.DeserializeObject(cacheEntry.Data, cacheEntry.Type);
 
             return null;
         }
@@ -91,7 +91,7 @@ namespace AnyCache.Providers.Redis
         {
             var cacheEntry = InternalGet(key);
             if (cacheEntry != null)
-                return JsonSerializer.Deserialize<T>(cacheEntry.Data);
+                return JsonConvert.DeserializeObject<T>(cacheEntry.Data);
 
             return default(T);
         }
@@ -115,9 +115,9 @@ namespace AnyCache.Providers.Redis
                 var typedItem = factory.Invoke(redisCacheEntry);
 
                 var cacheEntry = InternalSet(key, typedItem, policy);
-                return JsonSerializer.Deserialize<T>(cacheEntry.Data);
+                return JsonConvert.DeserializeObject<T>(cacheEntry.Data);
             }
-            return JsonSerializer.Deserialize<T>(cachedItem.Data);
+            return JsonConvert.DeserializeObject<T>(cachedItem.Data);
         }
 
         /// <summary>
@@ -139,9 +139,9 @@ namespace AnyCache.Providers.Redis
                 var typedItem = await factory.Invoke(redisCacheEntry);
 
                 var cacheEntry = InternalSet(key, typedItem, policy);
-                return JsonSerializer.Deserialize<T>(cacheEntry.Data);
+                return JsonConvert.DeserializeObject<T>(cacheEntry.Data);
             }
-            return JsonSerializer.Deserialize<T>(cachedItem.Data);
+            return JsonConvert.DeserializeObject<T>(cachedItem.Data);
         }
 
         /// <summary>
@@ -173,7 +173,7 @@ namespace AnyCache.Providers.Redis
 
             var dataEntry = new RedisDataEntry(item);
             // serialize this entry as json string encoded as a RedisDataEntry
-            var serializedObject = JsonSerializer.ToJsonString(dataEntry);
+            var serializedObject = JsonConvert.SerializeObject(dataEntry);
 
             var expireWhen = TimeSpan.FromSeconds(DefaultCacheExpirySeconds);
             if (policy.AbsoluteExpiration.HasValue)
@@ -195,7 +195,7 @@ namespace AnyCache.Providers.Redis
             if (!content.IsNull && content.HasValue && !string.IsNullOrEmpty(content))
             {
                 // deserialize entry from json back to RedisDataEntry
-                var dataEntry = JsonSerializer.Deserialize<RedisDataEntry>(content.ToString());
+                var dataEntry = JsonConvert.DeserializeObject<RedisDataEntry>(content.ToString());
                 return dataEntry;
             }
 

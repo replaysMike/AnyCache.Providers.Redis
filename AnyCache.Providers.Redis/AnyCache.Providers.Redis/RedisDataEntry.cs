@@ -1,5 +1,5 @@
-﻿using System;
-using Utf8Json;
+﻿using Newtonsoft.Json;
+using System;
 
 namespace AnyCache.Providers.Redis
 {
@@ -36,7 +36,7 @@ namespace AnyCache.Providers.Redis
 
             Type = data.GetType();
             // automatically serialize this object to json
-            Data = JsonSerializer.ToJsonString(data);
+            Data = JsonConvert.SerializeObject(data);
         }
 
         public override string ToString()
