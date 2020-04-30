@@ -28,7 +28,17 @@
       <!-- These are all the assemblies you want to embed -->
       <InputAssemblies Include="StackExchange.Redis.StrongName.dll" />
       <InputAssemblies Include="Newtonsoft.Json.dll" />
+      <InputAssemblies Include="System.Collections.Concurrent.dll" />
+      <InputAssemblies Include="System.Collections.NonGeneric.dll" />
+      <InputAssemblies Include="System.IO.FileSystem.Primitives.dll" />
       <InputAssemblies Include="System.Runtime.Serialization.Primitives.dll" />
+      <InputAssemblies Include="System.Reflection.TypeExtensions.dll" />
+      <InputAssemblies Include="System.Reflection.Emit.dll" />
+      <InputAssemblies Include="System.Reflection.Emit.ILGeneration.dll" />
+      <InputAssemblies Include="System.Reflection.Emit.Lightweight.dll" />
+      <InputAssemblies Include="System.Runtime.InteropServices.RuntimeInformation.dll" />
+      <InputAssemblies Include="System.Security.Cryptography.OpenSsl.dll" />
+      <InputAssemblies Include="System.Security.Cryptography.Primitives.dll" />
     </ItemGroup>
     <ItemGroup>
       <!-- Dot not internalize any types inside this assembly -->
