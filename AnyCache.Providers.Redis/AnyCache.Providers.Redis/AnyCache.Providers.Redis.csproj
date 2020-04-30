@@ -18,6 +18,7 @@
     <PackageReference Include="ILRepack.MSBuild.Task.InternalizedRenameSupport" Version="2.0.19" PrivateAssets="all" />
     <PackageReference Include="Newtonsoft.Json" Version="12.0.3" PrivateAssets="all" />
     <PackageReference Include="StackExchange.Redis.StrongName" Version="1.2.6" PrivateAssets="all" />
+    <PackageReference Include="System.Reflection.TypeExtensions" Version="4.7.0" PrivateAssets="all" />
   </ItemGroup>
 
   <Target Name="ILRepack" AfterTargets="Build" Condition="'$(Configuration)' == 'Release' AND '$(TargetFramework)' != ''">

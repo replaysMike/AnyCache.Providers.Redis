@@ -177,7 +177,7 @@ namespace AnyCache.Providers.Redis
 
             var expireWhen = TimeSpan.FromSeconds(DefaultCacheExpirySeconds);
             if (policy.AbsoluteExpiration.HasValue)
-                expireWhen = DateTime.Now.Subtract(policy.AbsoluteExpiration.Value.DateTime);
+                expireWhen = policy.AbsoluteExpiration.Value.DateTime.Subtract(DateTime.Now);
             if (policy.AbsoluteExpirationRelativeToNow.HasValue)
                 expireWhen = policy.AbsoluteExpirationRelativeToNow.Value;
             if (policy.SlidingExpiration.HasValue)
