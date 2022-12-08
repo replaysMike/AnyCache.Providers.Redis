@@ -16,7 +16,7 @@
   <ItemGroup>
     <PackageReference Include="AnyCache" Version="1.0.16" />
     <PackageReference Include="ILRepack.MSBuild.Task.InternalizedRenameSupport" Version="2.0.19" PrivateAssets="all" />
-    <PackageReference Include="Newtonsoft.Json" Version="12.0.3" PrivateAssets="all" />
+    <PackageReference Include="Newtonsoft.Json" Version="13.0.2" PrivateAssets="all" />
     <PackageReference Include="StackExchange.Redis.StrongName" Version="1.2.6" />
   </ItemGroup>
 
